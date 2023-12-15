@@ -38,6 +38,5 @@ public class UtenteDAO {
             System.out.println("Utente con id " + id + " non trovato");
         }
 
-
     }
 }

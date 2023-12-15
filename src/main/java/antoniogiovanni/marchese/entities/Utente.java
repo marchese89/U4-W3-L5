@@ -16,7 +16,7 @@ public class Utente {
     private String cognome;
     @Column(name = "data_di_nascita")
     private LocalDate dataDiNascita;
-    @Column(name = "numero_di_tessera")
+    @Column(name = "numero_di_tessera",unique = true)
     private long numeroDiTessera;
 
     public Utente() {

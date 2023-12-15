@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@NamedQuery(name = "elementiAttualmenteInPrestitoPerTesseraUtente",query = "SELECT p.elementoPrestato FROM Prestito p WHERE p.dataRestituzioneEffettiva = NULL AND p.dataRestituzionePrevista > CURRENT_DATE AND p.utente.numeroDiTessera = :numTessera")
+@NamedQuery(name = "prestitiScadutiEnonRestituiti",query = "SELECT p FROM Prestito p WHERE p.dataRestituzioneEffettiva = NULL AND p.dataRestituzionePrevista < CURRENT_DATE")
 public class Prestito {
     @Id
     @GeneratedValue
