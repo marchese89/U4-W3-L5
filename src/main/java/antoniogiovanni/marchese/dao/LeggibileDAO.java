@@ -1,11 +1,13 @@
 package antoniogiovanni.marchese.dao;
 
 import antoniogiovanni.marchese.entities.Leggibile;
+import antoniogiovanni.marchese.entities.Libro;
 import antoniogiovanni.marchese.entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class LeggibileDAO {
     private final EntityManager em;
@@ -40,7 +42,6 @@ public class LeggibileDAO {
             System.out.println("Leggibile con id " + id + " non trovato");
         }
 
-
     }
 
     public void findByISBNAndDelete(String isbn) {
@@ -57,6 +58,31 @@ public class LeggibileDAO {
             System.out.println("Leggibile con isbn " + isbn + " non trovato");
         }
 
-
     }
+
+    public Leggibile findByISBN(String isbn) {
+        TypedQuery<Leggibile> findByISBN = em.createNamedQuery("ricercaLeggibilePerISBN",Leggibile.class);
+        findByISBN.setParameter("codiceISBN",isbn);
+        return findByISBN.getSingleResult();
+    }
+
+    public List<Leggibile> findByAnnoPubblicazione(int annoPubblicazione) {
+        TypedQuery<Leggibile> findByISBN = em.createNamedQuery("ricercaLeggibilePerAnnoPubblicazione",Leggibile.class);
+        findByISBN.setParameter("annoPubblicazione",annoPubblicazione);
+        return findByISBN.getResultList();
+    }
+
+    public List<Libro> findByAutore(String autore) {
+        TypedQuery<Libro> findByISBN = em.createNamedQuery("ricercaLibroPerAutore",Libro.class);
+        findByISBN.setParameter("autore",autore);
+        return findByISBN.getResultList();
+    }
+
+    public List<Leggibile> findByTitoloOparte(String titolo) {
+        TypedQuery<Leggibile> findByISBN = em.createNamedQuery("ricercaLeggibilePerTitoloOparte",Leggibile.class);
+        findByISBN.setParameter("titolo",titolo);
+        return findByISBN.getResultList();
+    }
+
+
 }

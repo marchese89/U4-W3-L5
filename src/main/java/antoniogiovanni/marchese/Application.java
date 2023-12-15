@@ -19,9 +19,20 @@ public class Application {
         UtenteDAO ud = new UtenteDAO(em);
         LeggibileDAO ld = new LeggibileDAO(em);
         Utente utente1 = new Utente("NomeUtente","cognomeUtente",LocalDate.now().minusYears(20),232);
+
         //ud.save(utente1);
         Libro libro = new Libro("aaa123","TitoloLibro",1949,200,"AutoreLibro","Fantasy");
+        //****************************************** AGGIUNTA AL CATALOGO ****************************************
         //ld.save(libro);
-        ld.findByISBNAndDelete("aaa123");
+        //********************************************** RIMOZIONE PER CODICE ISBN *******************************
+        //ld.findByISBNAndDelete("aaa123");
+        System.out.println("***************************** RICERCA PER CODICE ISBN *****************************");
+        System.out.println(ld.findByISBN("aaa123"));
+        System.out.println("***************************** RICERCA PER ANNO PUBBLICAZIONE *****************************");
+        ld.findByAnnoPubblicazione(1949).forEach(System.out::println);
+        System.out.println("***************************** RICERCA PER AUTORE *****************************");
+        ld.findByAutore("AutoreLibro").forEach(System.out::println);
+        System.out.println("***************************** RICERCA PER TITOLO O PARTE DI ESSO *****************************");
+        ld.findByTitoloOparte("toloLib").forEach(System.out::println);
     }
 }

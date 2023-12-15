@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_leggibile")
+@NamedQuery(name = "ricercaLeggibilePerISBN",query = "SELECT l FROM Leggibile l WHERE l.codiceISBN = :codiceISBN")
+@NamedQuery(name = "ricercaLeggibilePerAnnoPubblicazione",query = "SELECT l FROM Leggibile l WHERE l.annoPubblicazione = :annoPubblicazione")
+@NamedQuery(name = "ricercaLeggibilePerTitoloOparte",query = "SELECT l FROM Leggibile l WHERE l.titolo LIKE CONCAT('%', :titolo, '%')")
 public abstract class Leggibile {
     @Id
     @GeneratedValue
@@ -13,7 +16,7 @@ public abstract class Leggibile {
     @Column(unique = true, name = "codice_isbn")
     private String codiceISBN;
     @Column(name = "titolo")
-    private String Titolo;
+    private String titolo;
     @Column(name = "anno_pubblicazione")
     private int annoPubblicazione;
     @Column(name = "numero_pagine")
@@ -24,7 +27,7 @@ public abstract class Leggibile {
 
     public Leggibile(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine) {
         this.codiceISBN = codiceISBN;
-        Titolo = titolo;
+        this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;
     }
@@ -34,11 +37,11 @@ public abstract class Leggibile {
     }
 
     public String getTitolo() {
-        return Titolo;
+        return titolo;
     }
 
     public void setTitolo(String titolo) {
-        Titolo = titolo;
+        titolo = titolo;
     }
 
     public int getAnnoPubblicazione() {
@@ -60,7 +63,7 @@ public abstract class Leggibile {
     @Override
     public String toString() {
         return "id=" + id +
-                ", Titolo='" + Titolo + '\'' +
+                ", Titolo='" + titolo + '\'' +
                 ", annoPubblicazione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine;
     }

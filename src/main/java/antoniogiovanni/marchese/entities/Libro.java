@@ -1,12 +1,10 @@
 package antoniogiovanni.marchese.entities;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("libro")
+@NamedQuery(name = "ricercaLibroPerAutore",query = "SELECT l FROM Libro l WHERE l.autore = :autore")
 public class Libro extends Leggibile{
 
     private String autore;
