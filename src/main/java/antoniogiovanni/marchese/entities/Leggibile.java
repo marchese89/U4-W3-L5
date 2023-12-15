@@ -9,6 +9,9 @@ public abstract class Leggibile {
     @Id
     @GeneratedValue
     private long id;
+
+    @Column(unique = true, name = "codice_isbn")
+    private String codiceISBN;
     @Column(name = "titolo")
     private String Titolo;
     @Column(name = "anno_pubblicazione")
@@ -19,7 +22,8 @@ public abstract class Leggibile {
     public Leggibile() {
     }
 
-    public Leggibile(String titolo, int annoPubblicazione, int numeroPagine) {
+    public Leggibile(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine) {
+        this.codiceISBN = codiceISBN;
         Titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;

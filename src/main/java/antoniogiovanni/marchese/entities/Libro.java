@@ -15,8 +15,8 @@ public class Libro extends Leggibile{
     public Libro() {
     }
 
-    public Libro(String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
-        super(titolo, annoPubblicazione, numeroPagine);
+    public Libro(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
+        super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
         this.autore = autore;
         this.genere = genere;
     }

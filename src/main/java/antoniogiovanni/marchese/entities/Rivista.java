@@ -12,8 +12,8 @@ public class Rivista extends Leggibile{
     public Rivista() {
     }
 
-    public Rivista(String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
-        super(titolo, annoPubblicazione, numeroPagine);
+    public Rivista(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
+        super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
         this.periodicita = periodicita;
     }
 

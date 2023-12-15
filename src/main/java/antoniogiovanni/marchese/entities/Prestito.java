@@ -8,6 +8,8 @@ public class Prestito {
     @Id
     @GeneratedValue
     private long id;
+    @ManyToOne
+    @JoinColumn(name = "utente_prestito")
     private Utente utente;
     @ManyToOne
     @JoinColumn(name = "elemento_prestato")
